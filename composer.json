@@ -1,12 +1,15 @@
 {
-    "name": "cityofzion/neo-php",
-    "description": "NEO blockchain implementation for PHP",
-    "type": "library",
-    "license": "MIT",
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": {
-            "NeoPHP\\": "src"
-        }
-    }  
+  "name": "cityofzion/neo-php",
+  "description": "NEO blockchain implementation for PHP",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "NeoPHP\\": "src"
+    }
+  },
+  "require": {
+    "ext-bcrypt": "*"
+  }
 }

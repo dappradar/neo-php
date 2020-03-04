@@ -6,7 +6,7 @@ class BCMathUtils
 {
     public static function bcrand($min, $max = false)
     {
-        if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
+        if (extension_loaded('bcmath')) {
             if (!$max) {
                 $max = $min;
                 $min = 0;
@@ -26,7 +26,7 @@ class BCMathUtils
 
     public static function bchexdec($hex)
     {
-        if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
+        if (extension_loaded('bcmath')) {
             $len = strlen($hex);
             $dec = '';
             for ($i = 1; $i <= $len; $i++) {
@@ -69,7 +69,7 @@ class BCMathUtils
 
     public static function bcand($x, $y)
     {
-        if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
+        if (extension_loaded('bcmath')) {
             return self::_bcbitwise_internal($x, $y, 'BCMathUtils::_bcand');
         } else {
             throw new \ErrorException("Please install BCMATH");
@@ -78,7 +78,7 @@ class BCMathUtils
 
     public static function bcor($x, $y)
     {
-        if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
+        if (extension_loaded('bcmath')) {
             return self::_bcbitwise_internal($x, $y, 'self::_bcor');
         } else {
             throw new \ErrorException("Please install BCMATH");
@@ -87,7 +87,7 @@ class BCMathUtils
 
     public static function bcxor($x, $y)
     {
-        if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
+        if (extension_loaded('bcmath')) {
             return self::_bcbitwise_internal($x, $y, 'self::_bcxor');
         } else {
             throw new \ErrorException("Please install BCMATH");
@@ -96,7 +96,7 @@ class BCMathUtils
 
     public static function bcleftshift($num, $shift)
     {
-        if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
+        if (extension_loaded('bcmath')) {
             bcscale(0);
 
             return bcmul($num, bcpow(2, $shift));
@@ -107,7 +107,7 @@ class BCMathUtils
 
     public static function bcrightshift($num, $shift)
     {
-        if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
+        if (extension_loaded('bcmath')) {
             bcscale(0);
 
             return bcdiv($num, bcpow(2, $shift));
