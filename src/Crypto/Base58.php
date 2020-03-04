@@ -4,7 +4,6 @@ namespace NeoPHP\Crypto;
 
 class Base58
 {
-
     /**
      * checkEncode function.
      *
@@ -38,9 +37,9 @@ class Base58
 
             $base58 = '1' . $base58;
         }
+
         return $base58;
     }
-
 
     /**
      * checkDecode function.
@@ -53,8 +52,12 @@ class Base58
      * @return string
      */
 
-    public static function checkDecode($string, $removeLeadingBytes = 1, $removeTrailingBytes = 4, $removeCompression = true)
-    {
+    public static function checkDecode(
+        $string,
+        $removeLeadingBytes = 1,
+        $removeTrailingBytes = 4,
+        $removeCompression = true
+    ) {
         $string = bin2hex(BCMathUtils::bc2bin(self::decode($string)));
 
         //if trailing bytes: Network type

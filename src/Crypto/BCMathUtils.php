@@ -11,9 +11,16 @@ class BCMathUtils
                 $max = $min;
                 $min = 0;
             }
-            return bcadd(bcmul(bcdiv(openssl_random_pseudo_bytes(0, mt_getrandmax()), mt_getrandmax(), strlen($max)), bcsub(bcadd($max, 1), $min)), $min);
+
+            return bcadd(
+                bcmul(
+                    bcdiv(openssl_random_pseudo_bytes(0, mt_getrandmax()), mt_getrandmax(), strlen($max)),
+                    bcsub(bcadd($max, 1), $min)
+                ),
+                $min
+            );
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -25,9 +32,10 @@ class BCMathUtils
             for ($i = 1; $i <= $len; $i++) {
                 $dec = bcadd($dec, bcmul(strval(hexdec($hex[$i - 1])), bcpow('16', strval($len - $i))));
             }
+
             return $dec;
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -52,6 +60,7 @@ class BCMathUtils
             if (isset($hex[$i])) {
                 $hex[$i] = dechex(hexdec($hex[$i]) + 1);
             }
+
             return strrev($hex);
         } else {
             throw new \ErrorException("Please install BCMATH");
@@ -63,7 +72,7 @@ class BCMathUtils
         if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
             return self::_bcbitwise_internal($x, $y, 'BCMathUtils::_bcand');
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -72,7 +81,7 @@ class BCMathUtils
         if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
             return self::_bcbitwise_internal($x, $y, 'self::_bcor');
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -81,7 +90,7 @@ class BCMathUtils
         if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
             return self::_bcbitwise_internal($x, $y, 'self::_bcxor');
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -89,9 +98,10 @@ class BCMathUtils
     {
         if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
             bcscale(0);
+
             return bcmul($num, bcpow(2, $shift));
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -99,9 +109,10 @@ class BCMathUtils
     {
         if (extension_loaded('bcmath') && USE_EXT == 'BCMATH') {
             bcscale(0);
+
             return bcdiv($num, bcpow(2, $shift));
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -132,6 +143,7 @@ class BCMathUtils
             $yd = substr($by, $ix, 1);
             $ret .= call_user_func(__NAMESPACE__ . '\\' . $op, $xd, $yd);
         }
+
         return self::bin2bc($ret);
     }
 
@@ -162,9 +174,10 @@ class BCMathUtils
                 $value = $digits[$rest] . $value;
             }
             $value = $digits[intval($dec)] . $value;
+
             return (string)$value;
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -188,9 +201,10 @@ class BCMathUtils
                 $power = bcpow($base, $size - $loop - 1);
                 $dec = bcadd($dec, bcmul($element, $power));
             }
+
             return (string)$dec;
         } else {
-            throw new ErrorException("Please install BCMATH");
+            throw new \ErrorException("Please install BCMATH");
         }
     }
 
@@ -206,6 +220,7 @@ class BCMathUtils
             $digits .= "ABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
         }
         $digits = substr($digits, 0, $base);
+
         return (string)$digits;
     }
 
